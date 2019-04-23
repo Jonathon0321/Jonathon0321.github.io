@@ -5,18 +5,25 @@
   
 
   
-  <title>Hexo</title>
+  <title>在MAC下部署Fabric | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="环境： Mac OS 参考书目 ： 区块链开发实战： Hyperledger Fabric 关键技术与案例分析 开发环境准备 Docker   安装与配置 使用以下命令: 12sudo  brew install docker.io sudo brew install docker-compose  常用命令  查看 Docker 版本 1docker version  查看镜像列表 1docke">
+<meta name="keywords" content="Fabric">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在MAC下部署Fabric">
+<meta property="og:url" content="http://yoursite.com/2019/04/12/在MAC下部署Fabric/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="环境： Mac OS 参考书目 ： 区块链开发实战： Hyperledger Fabric 关键技术与案例分析 开发环境准备 Docker   安装与配置 使用以下命令: 12sudo  brew install docker.io sudo brew install docker-compose  常用命令  查看 Docker 版本 1docker version  查看镜像列表 1docke">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/Users/jingwang/Library/Application%20Support/typora-user-images/image-20190423222325407.png">
+<meta property="og:updated_time" content="2019-04-23T14:55:29.724Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="在MAC下部署Fabric">
+<meta name="twitter:description" content="环境： Mac OS 参考书目 ： 区块链开发实战： Hyperledger Fabric 关键技术与案例分析 开发环境准备 Docker   安装与配置 使用以下命令: 12sudo  brew install docker.io sudo brew install docker-compose  常用命令  查看 Docker 版本 1docker version  查看镜像列表 1docke">
+<meta name="twitter:image" content="http://yoursite.com/Users/jingwang/Library/Application%20Support/typora-user-images/image-20190423222325407.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -49,15 +56,13 @@
   </div>
 </header>
       <div id="middlecontent" title class="global-width sidebar-right">
-        <section id="main">
-  
-    <article id="post-在MAC下部署Fabric" class="article global-container article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-在MAC下部署Fabric" class="article global-container article-type-post" itemscope="" itemprop="blogPost">
   
     <header class="article-header">
       
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/12/在MAC下部署Fabric/">在MAC下部署Fabric</a>
+    <h1 class="article-title" itemprop="name">
+      在MAC下部署Fabric
     </h1>
   
 
@@ -72,6 +77,10 @@
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Fabric/">Fabric</a></li></ul>
 
   </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
   
 
   <div class="article-inner">
@@ -168,167 +177,46 @@
       
     </div>
     
+      <footer class="article-footer">
+        完
+      </footer>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2019/02/18/以太坊私有链搭建简要记录/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">以太坊私有链搭建简要记录</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: '',
+  repo: '',
+  oauth: {
+    client_id: '',
+    client_secret: '',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
   
   
 </article>
-
-  
-    <article id="post-以太坊私有链搭建简要记录" class="article global-container article-type-post" itemscope="" itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/18/以太坊私有链搭建简要记录/">以太坊私有链搭建简要记录</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2019/02/18/以太坊私有链搭建简要记录/" class="article-date">
-  <time datetime="2019-02-18T07:23:23.000Z" itemprop="datePublished">2019-02-18</time>
-</a>
-    
-    
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ethereum/">ethereum</a></li></ul>
-
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-doorframe" itemprop="articleBody">
-      
-        <p>#####环境： MAC OS</p>
-<p>###以太坊的安装</p>
-<ol>
-<li>快速安装<br>在安装homebrew后直接使用命令行安装以太坊，命令如下：<br>&emsp;<code>$ brew tap ethereum/ethereum</code><br>&emsp;<code>$ brew install ethereum</code><br>升级命令如下：<br>&emsp;<code>$brew upgrade ethereum</code></li>
-<li>源码编译安装<br>先从 GitHub 上获取 go-ethereum 源码，然后编译 geth<br>&emsp;<code>$ git clone https://github.com/ethereum/go-ethereum.git</code><br>&emsp;<code>$ cd go-ethereum</code><br>&emsp;<code>$ make geth</code></li>
-</ol>
-<h2 id="以太坊私有链的搭建"><a href="#以太坊私有链的搭建" class="headerlink" title="以太坊私有链的搭建"></a>以太坊私有链的搭建</h2><ul>
-<li>新建一个工作目录，取名随意，然后目录中创建一个json文件，该文件用来初始化创世区块。<br>目录结构如下:<div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">geth</span><br><span class="line">└──gensis.json</span><br><span class="line">```  </span><br><span class="line">* 接下来在 geth 中创建一个文件夹来存储区块链的数据，在这里使用db作为文件夹名。  </span><br><span class="line">使用以下命令来初始化私有链：</span><br><span class="line">```text</span><br><span class="line">$ geth --datadir &quot;./db&quot; init gensis.json</span><br></pre></td></tr></table></figure></div>
-</li>
-</ul>
-<p>&emsp;&emsp;其中 gensis.json 的内容如下：<br><div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JSON"><figure class="iseeu highlight /json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"config"</span>: &#123;</span><br><span class="line">        <span class="attr">"chainId"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">"homesteadBlock"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">"eip155Block"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">"eip158Block"</span>: <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">  <span class="attr">"alloc"</span>      : &#123;&#125;,</span><br><span class="line">  <span class="attr">"coinbase"</span>   : <span class="string">"0x0000000000000000000000000000000000000000"</span>,</span><br><span class="line">  <span class="attr">"difficulty"</span> : <span class="string">"0x20000"</span>,</span><br><span class="line">  <span class="attr">"extraData"</span>  : <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"gasLimit"</span>   : <span class="string">"0x2fefd8"</span>,</span><br><span class="line">  <span class="attr">"nonce"</span>      : <span class="string">"0x0000000000000042"</span>,</span><br><span class="line">  <span class="attr">"mixhash"</span>    : <span class="string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">  <span class="attr">"parentHash"</span> : <span class="string">"0x0000000000000000000000000000000000000000000000000000000000000000"</span>,</span><br><span class="line">  <span class="attr">"timestamp"</span>  : <span class="string">"0x00"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
-<p>此处为引用 git 上<a href="https://github.com/ethereum/go-ethereum" target="_blank" rel="noopener">以太坊</a>的 README。</p>
-
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
-    <article id="post-Markdown-语法总结" class="article global-container article-type-post" itemscope="" itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/22/Markdown-语法总结/">Markdown 语法总结</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2019/01/22/Markdown-语法总结/" class="article-date">
-  <time datetime="2019-01-22T03:43:49.000Z" itemprop="datePublished">2019-01-22</time>
-</a>
-    
-    
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/">Tool</a></li></ul>
-
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-doorframe" itemprop="articleBody">
-      
-        <ol>
-<li><p>标题 </p>
-<p>以井号开头即可，几个井号就是几级标题。</p>
-</li>
-</ol>
-<h1 id="h1"><a href="#h1" class="headerlink" title="h1"></a>h1</h1><h2 id="h2"><a href="#h2" class="headerlink" title="h2"></a>h2</h2><ol start="2">
-<li><p>分割线</p>
-<p>三个以上的短线即为分割线</p>
-<hr>
-</li>
-<li><p>超链接</p>
-<ol>
-<li><p>[链接名]（网址，标题）</p>
-<p><a href="https://baidu.com" target="_blank" rel="noopener">链接（百度）</a></p>
-</li>
-</ol>
-</li>
-</ol>
-<ol start="4">
-<li><p>键盘键</p>
-<p><code>&lt;kbd&gt;Ctrl+[&lt;/kbd&gt;</code></p>
-<p><kbd>Ctrl+[</kbd>and <kbd>Ctrl+]</kbd></p>
-</li>
-<li><p>Code格式 ： 反引号</p>
-<p><code>printf()</code></p>
-</li>
-<li><p>强调</p>
-<ol>
-<li><em>斜体强调</em>   使用*包围内容</li>
-<li><strong>粗体强调</strong>   使用**包围内容</li>
-</ol>
-</li>
-<li><p>图片</p>
-<p><img src="http://pltwamt69.bkt.clouddn.com/bb00e31f33429afd2edb803d1988c2784421319d.jpg@518w_1e_1c.jpg" alt="示例"></p>
-</li>
-<li><p>使用icon图标文字</p>
-<p><code>&lt;i class=&quot;icon-cog&quot;&gt;e.g.&lt;/i&gt;</code></p>
-<p><i class="icon-cog">e.g.</i></p>
-</li>
-<li><p>表格</p>
-<div class="highlight-box" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">|Item     | Value|</span><br><span class="line">|-------- | ---|</span><br><span class="line">|Computer | $1600|</span><br><span class="line">|Phone    | $12|</span><br><span class="line">|Pipe     | $1|</span><br></pre></td></tr></table></figure></div>
-</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Computer</td>
-<td>$1600</td>
-</tr>
-<tr>
-<td>Phone</td>
-<td>$12</td>
-</tr>
-<tr>
-<td>Pipe</td>
-<td>$1</td>
-</tr>
-</tbody>
-</table>
-<p><code>强调</code></p>
-
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
-
-
-
 </section>
         <aside id="sidebar">
   
