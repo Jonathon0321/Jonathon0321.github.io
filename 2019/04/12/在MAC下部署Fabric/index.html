@@ -19,7 +19,7 @@
 <meta property="og:description" content="环境： Mac OS 参考书目 ： 区块链开发实战： Hyperledger Fabric 关键技术与案例分析 开发环境准备 Docker   安装与配置 使用以下命令: 12sudo  brew install docker.io sudo brew install docker-compose  常用命令  查看 Docker 版本 1docker version  查看镜像列表 1docke">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/Users/jingwang/Library/Application%20Support/typora-user-images/image-20190423222325407.png">
-<meta property="og:updated_time" content="2019-04-23T14:55:29.724Z">
+<meta property="og:updated_time" content="2019-04-26T05:23:02.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在MAC下部署Fabric">
 <meta name="twitter:description" content="环境： Mac OS 参考书目 ： 区块链开发实战： Hyperledger Fabric 关键技术与案例分析 开发环境准备 Docker   安装与配置 使用以下命令: 12sudo  brew install docker.io sudo brew install docker-compose  常用命令  查看 Docker 版本 1docker version  查看镜像列表 1docke">
@@ -165,10 +165,12 @@
 </ol>
 <p>PS：</p>
 <p>Docker 中的一些命令</p>
-<p>docker exec -e “CORE_PEER_LOCALMSPID=Org1MSP” -e “<a href="mailto:CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/users/Admin@org1.example.com" target="_blank" rel="noopener">CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/msp/users/Admin@org1.example.com</a>/msp” peer0.org1.example.com</p>
-<p>peer chaincode install -n mycc -v v0 -p github.com/chaincode_example02/go</p>
-<p>peer chaincode instantiate -o orderer.example.com:7050 -C mychannel -n mycc -v v0 -c ‘{“Args”:[“init”,”12000”,”er”,”l2k3j4l”,”/slfj”]}’</p>
-<p>peer chaincode query  -C mychannel -n mycc -c ‘{“Args”:[“query”,”12000”]}’</p>
+<p>进入docker后，执行以下命令可以完成链码的安装等。</p>
+<p>安装： peer chaincode install -n mycc -v v0 -p github.com/chaincode_example02/go</p>
+<p>初始化信息 ：peer chaincode instantiate -o orderer.example.com:7050 -C mychannel -n mycc -v v0 -c ‘{“Args”:[“init”,”12000”,”er”,”l2k3j4l”,”/slfj”]}’</p>
+<p>查询信息：peer chaincode query  -C mychannel -n mycc -c ‘{“Args”:[“query”,”12000”]}’</p>
+<p>添加或删除信息： peer chaincode invoke -C mychannel -n mycc -c ‘{“Args”:[“add”,”6”,”thonas”,”lksjfdeio”,”/titan”]}’</p>
+<p>​                              peer chaincode invoke -C mychannel -n mycc -c ‘{“Args”:”delete”,”6”}’</p>
 <p>清除docker 配置</p>
 <blockquote>
 <p>当网络无法启动时，可以使用以下命令清除docker容器及配置。</p>
