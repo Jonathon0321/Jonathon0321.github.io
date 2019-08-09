@@ -8,18 +8,20 @@
   <link rel="dns-prefetch" href="http://http://jonathon0321.github.io">
   <title>设计模式的原则 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="​        设计模式有23种，这23种模式都遵守六个原则。六个原则分别是单一职责原则、里氏替换原则、依赖倒置原则、接口隔离原则、迪米特法则和开闭原则。 一、单一职责原则​    该原则的原文是：”There should never be more than one reason for a class to change“，由罗伯特·C.马丁（Robert C. Martin）提出。对于一">
+  <meta name="description" content="​        设计模式有23种，这23种模式都遵守六个原则。六个原则分别是单一职责原则、里氏替换原则、依赖倒置原则、接口隔离原则、迪米特法则和开闭原则。">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式的原则">
 <meta property="og:url" content="http://http://jonathon0321.github.io/2019/07/10/设计模式的原则/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="​        设计模式有23种，这23种模式都遵守六个原则。六个原则分别是单一职责原则、里氏替换原则、依赖倒置原则、接口隔离原则、迪米特法则和开闭原则。 一、单一职责原则​    该原则的原文是：”There should never be more than one reason for a class to change“，由罗伯特·C.马丁（Robert C. Martin）提出。对于一">
+<meta property="og:description" content="​        设计模式有23种，这23种模式都遵守六个原则。六个原则分别是单一职责原则、里氏替换原则、依赖倒置原则、接口隔离原则、迪米特法则和开闭原则。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-09T08:14:04.709Z">
+<meta property="og:image" content="https://github.com/Jonathon0321/imageHost/blob/master/photo.jpg">
+<meta property="og:updated_time" content="2019-08-09T08:58:25.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式的原则">
-<meta name="twitter:description" content="​        设计模式有23种，这23种模式都遵守六个原则。六个原则分别是单一职责原则、里氏替换原则、依赖倒置原则、接口隔离原则、迪米特法则和开闭原则。 一、单一职责原则​    该原则的原文是：”There should never be more than one reason for a class to change“，由罗伯特·C.马丁（Robert C. Martin）提出。对于一">
+<meta name="twitter:description" content="​        设计模式有23种，这23种模式都遵守六个原则。六个原则分别是单一职责原则、里氏替换原则、依赖倒置原则、接口隔离原则、迪米特法则和开闭原则。">
+<meta name="twitter:image" content="https://github.com/Jonathon0321/imageHost/blob/master/photo.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -48,7 +50,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="./source/img/photo.jpg" class="js-avatar">
+			<img src="https://github.com/Jonathon0321/imageHost/raw/master/photo.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Jonathon</a></h1>
@@ -104,7 +106,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="./source/img/photo.jpg" class="js-avatar">
+				<img src="https://github.com/Jonathon0321/imageHost/raw/master/photo.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Jonathon</h1>
@@ -174,6 +176,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>​        设计模式有23种，这23种模式都遵守六个原则。六个原则分别是单一职责原则、里氏替换原则、依赖倒置原则、接口隔离原则、迪米特法则和开闭原则。</p>
+<a id="more"></a>
 <h3 id="一、单一职责原则"><a href="#一、单一职责原则" class="headerlink" title="一、单一职责原则"></a>一、单一职责原则</h3><p>​    该原则的原文是：”There should never be more than one reason for a class to change“，由罗伯特·C.马丁（Robert C. Martin）提出。对于一个类，使其发生改变的原因不应该超过一个。这里的原因即是职责的意思，即每个类应只有一种职责。</p>
 <p>​    一种职责指的是一个或多个紧密相关的功能。例如，作为播放器，播放、暂停等功能是不可分割的，而上传、下载等功能就应该放到一个新的类中，而不是草率的加入到播放器中。</p>
 <p>​    该原则的判断基准是职责，而职责却是难以量化的，因此一个设计是否严格遵守了单一职责原则，是难以下定论的。在实际设计中，如何细分职责，细分之后是否每一个都单独成一个接口，都需要和实际结合，如果一味的遵守原则，设计出来的接口反而可能过于繁多，难以使用。</p>
@@ -208,6 +211,7 @@
 <li><p>抽象不应依赖于细节</p>
 </li>
 <li><p>细节应该依赖于抽象</p>
+<p><img src="https://github.com/Jonathon0321/imageHost/blob/master/photo.jpg" alt="测试"></p>
 </li>
 </ul>
 
@@ -399,11 +403,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ethereum</a>
+                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color4">ethereum</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -411,7 +415,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
