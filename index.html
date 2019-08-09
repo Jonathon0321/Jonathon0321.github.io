@@ -5,12 +5,12 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://http://jonathon0321.github.io">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://http://jonathon0321.github.io/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -43,7 +43,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="./source/img/photo.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Jonathon</a></h1>
@@ -65,8 +65,6 @@
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
-    			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -101,7 +99,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="./source/img/photo.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Jonathon</h1>
@@ -173,15 +171,18 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>​        设计模式有23种，这23种模式都遵守六个原则。六个原则分别是单一职责原则、里氏替换原则、依赖倒置原则、接口隔离原则、迪米特法则和开闭原则。</p>
-<h4 id="一、单一职责原则"><a href="#一、单一职责原则" class="headerlink" title="一、单一职责原则"></a>一、单一职责原则</h4><p>​    该原则的原文是：”There should never be more than one reason for a class to change“，由罗伯特·C.马丁（Robert C. Martin）提出。对于一个类，使其发生改变的原因不应该超过一个。这里的原因即是职责的意思，即每个类应只有一种职责。</p>
+<h3 id="一、单一职责原则"><a href="#一、单一职责原则" class="headerlink" title="一、单一职责原则"></a>一、单一职责原则</h3><p>​    该原则的原文是：”There should never be more than one reason for a class to change“，由罗伯特·C.马丁（Robert C. Martin）提出。对于一个类，使其发生改变的原因不应该超过一个。这里的原因即是职责的意思，即每个类应只有一种职责。</p>
 <p>​    一种职责指的是一个或多个紧密相关的功能。例如，作为播放器，播放、暂停等功能是不可分割的，而上传、下载等功能就应该放到一个新的类中，而不是草率的加入到播放器中。</p>
 <p>​    该原则的判断基准是职责，而职责却是难以量化的，因此一个设计是否严格遵守了单一职责原则，是难以下定论的。在实际设计中，如何细分职责，细分之后是否每一个都单独成一个接口，都需要和实际结合，如果一味的遵守原则，设计出来的接口反而可能过于繁多，难以使用。</p>
-<h3 id="二、里氏替换原则"><a href="#二、里氏替换原则" class="headerlink" title="二、里氏替换原则"></a>二、里氏替换原则</h3><p>​    该原则有两种定义，分别如下：</p>
+<h3 id="二、里氏替换原则"><a href="#二、里氏替换原则" class="headerlink" title="二、里氏替换原则"></a>二、里氏替换原则</h3><p>​    Liskov在1987年提出了一个关于继承的原则：</p>
+<blockquote>
+<p>​        “Inheritance should ensure that any property proved about supertype objects also holds for subtype objects.”——“继承必须确保超类所拥有的性质在子类中仍然成立。”</p>
+</blockquote>
 <p>在该原则中，对该原则的解释共有四项：</p>
 <ol>
 <li>子类必须完全实现父类的方法</li>
-<li>子类可以有自己的个性</li>
-<li>覆盖或实现父类方法时输入参数可以被放大<ol start="4">
+<li>子类可以有自己的个性<ol start="3">
+<li>覆盖或实现父类方法时输入参数可以被放大</li>
 <li>覆写或实现父类的方法时输出结果可以被缩小</li>
 </ol>
 </li>
@@ -193,6 +194,19 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">dosomething</span><span class="params">(Map&lt;Long , String&gt; map)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"父类"</span>+map.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">son</span> <span class="keyword">extends</span> <span class="title">father</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dosomething</span><span class="params">(HashMap&lt;Long,String&gt; map)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"子类"</span>+map.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">t</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">invoker</span><span class="params">()</span></span>&#123;</span><br><span class="line">        HashMap&lt;Long,String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        father object = <span class="keyword">new</span> father();</span><br><span class="line">        object.dosomething(map);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        invoker();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    这时候执行代码，结果同样是父类，但是如果将父类替换为子类，则执行结果就变成了子类，此时就违反了里氏替换原则，替换后，行为发生了变化。</p>
 <p>​    这种很像是重载（overload），但是并不符合重载的定义，他是在两个不同的类中。但个人感觉这里用重载很合适，JAVA中的继承会继承父类的同名方法，也就是说子类拥有两个同名却不同参的方法，这样看来，也就是重载了。其实此刻会调用父类还是子类的方法完全是由输入参数决定的。如上例，父类方法的入参为Map，如果调用时输入参数为Map类型，则无论是父类还是子类对象，调用的都是父类的方法，可如果输入参数是HashMap类型，则会在使用子类替换父类时出现问题，使结果不符合里氏替换原则。</p>
+<h3 id="三、依赖倒置原则"><a href="#三、依赖倒置原则" class="headerlink" title="三、依赖倒置原则"></a>三、依赖倒置原则</h3><p>​    依赖倒置原则的定义如下：</p>
+<blockquote>
+<p>High level modules should not depend upon low level modules,both should depend upon abstractions.Abstractions should not depend upon details.Details should depend upon abstracts.</p>
+</blockquote>
+<p>​    该原则翻译后如下：</p>
+<ul>
+<li><p>高层模块不应依赖于底层模块，两者都应依赖于抽象</p>
+</li>
+<li><p>抽象不应依赖于细节</p>
+</li>
+<li><p>细节应该依赖于抽象</p>
+</li>
+</ul>
 
       
 
@@ -519,7 +533,7 @@
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -539,8 +553,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
     
       
       
@@ -552,15 +564,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -581,11 +591,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
+                <a href="javascript:void(0)" class="js-tag color4">ethereum</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ethereum</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -593,7 +603,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
               </li>
             
             <div class="clearfix"></div>
@@ -639,38 +649,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     	</section>
     
 
-    
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
     
 
     
