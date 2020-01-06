@@ -6,21 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://http://jonathon0321.github.io">
-  <title>在MAC下部署Fabric | Hexo</title>
+  <title>Sentry 源码分析记录 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="环境： Mac OS 参考书目 ： 区块链开发实战： Hyperledger Fabric 关键技术与案例分析 开发环境准备 Docker   安装与配置 使用以下命令:">
+  <meta name="description" content="源码包为 io.sentry:1.7.5 类 sentry该类在根目录下。 ######属性： logger,获取logger。 ​            SentryClient storedClient, 最近构造的实例，由辅助方法（例如 capture(Event)）使用。 ​            AtomicBoolean autoInitAttempted,用来判断是否尝试自动初始化。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在MAC下部署Fabric">
-<meta property="og:url" content="http://http//jonathon0321.github.io/2019/04/12/%E5%9C%A8MAC%E4%B8%8B%E9%83%A8%E7%BD%B2Fabric/index.html">
+<meta property="og:title" content="Sentry 源码分析记录">
+<meta property="og:url" content="http://http//jonathon0321.github.io/2020/01/05/Sentry-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="环境： Mac OS 参考书目 ： 区块链开发实战： Hyperledger Fabric 关键技术与案例分析 开发环境准备 Docker   安装与配置 使用以下命令:">
-<meta property="og:image" content="http://http/Users/jingwang/Downloads/image-20190423222325407.png">
-<meta property="article:published_time" content="2019-04-12T11:38:00.000Z">
-<meta property="article:modified_time" content="2019-08-09T08:56:01.862Z">
+<meta property="og:description" content="源码包为 io.sentry:1.7.5 类 sentry该类在根目录下。 ######属性： logger,获取logger。 ​            SentryClient storedClient, 最近构造的实例，由辅助方法（例如 capture(Event)）使用。 ​            AtomicBoolean autoInitAttempted,用来判断是否尝试自动初始化。">
+<meta property="article:published_time" content="2020-01-05T03:07:45.000Z">
+<meta property="article:modified_time" content="2020-01-06T06:18:11.349Z">
 <meta property="article:author" content="Jonathon">
-<meta property="article:tag" content="Fabric">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://http/Users/jingwang/Downloads/image-20190423222325407.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,125 +151,59 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-在MAC下部署Fabric" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Sentry-源码分析记录" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      在MAC下部署Fabric
+      Sentry 源码分析记录
     </h1>
   
 
         
-        <a href="/2019/04/12/%E5%9C%A8MAC%E4%B8%8B%E9%83%A8%E7%BD%B2Fabric/" class="archive-article-date">
-  	<time datetime="2019-04-12T11:38:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-12</time>
+        <a href="/2020/01/05/Sentry-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/" class="archive-article-date">
+  	<time datetime="2020-01-05T03:07:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>环境： Mac OS</p>
-<p>参考书目 ： 区块链开发实战： Hyperledger Fabric 关键技术与案例分析</p>
-<h3 id="开发环境准备"><a href="#开发环境准备" class="headerlink" title="开发环境准备"></a>开发环境准备</h3><ol>
-<li><p>Docker </p>
-<ol>
-<li><p>安装与配置</p>
-<p>使用以下命令:<a id="more"></a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo  brew install docker.io </span><br><span class="line">sudo brew install docker-compose</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>常用命令</p>
-<ol>
-<li><p>查看 Docker 版本</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看镜像列表</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看正在运行的镜像</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docket ps</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看容器的详细信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect [CONTAINER ID]</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>GO语言 </p>
-<ol>
-<li><p>安装与配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install golang</span><br></pre></td></tr></table></figure>
+        <p>源码包为 io.sentry:1.7.5</p>
+<h5 id="类-sentry"><a href="#类-sentry" class="headerlink" title="类 sentry"></a>类 sentry</h5><p>该类在根目录下。</p>
+<p>######属性：</p>
+<p>logger,获取logger。</p>
+<p>​            SentryClient storedClient, 最近构造的实例，由辅助方法（例如 capture(<em>Event</em>)）使用。</p>
+<p>​            AtomicBoolean autoInitAttempted,用来判断是否尝试自动初始化。在获取sentryClient时，若获取不到，且该字段为false时自动创建并置为true.</p>
+<h6 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h6><p>1.init : 使用配置的dsn（数据源名字，是错误上报的地址）和sentryClientFactory 来创建sentryClient 以初始化。</p>
+<p>2.getStoredClient: 返回最近的sentryClient实例</p>
+<p>3.getContext: 获取最近的sentryClient实例的Context</p>
+<p>4.clearContext:清除当前的context</p>
+<p>5.capture: 捕捉事件或throwable异常或信息或eventBuilder。</p>
+<p>6.record: 调用client 的context 记录 breadcrumb</p>
+<p>7.setUser: 调用client 的context 设置user</p>
+<p>8.close： 关闭sentryClient的链接。</p>
+<h6 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h6><p>该类应是用来主动调用并向服务器发送异常事件的。</p>
+<h4 id="异常捕捉"><a href="#异常捕捉" class="headerlink" title="异常捕捉"></a>异常捕捉</h4><p>在sentry-spring 中，通过实现了handlerExceptionResolver 接口来对异常进行捕捉（调用了capture），随后返回null以便其他异常处理可以捕捉到异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class SentryExceptionResolver implements HandlerExceptionResolver, Ordered &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public ModelAndView resolveException(HttpServletRequest request,</span><br><span class="line">                                         HttpServletResponse response,</span><br><span class="line">                                         Object handler,</span><br><span class="line">                                         Exception ex) &#123;</span><br><span class="line"></span><br><span class="line">        Sentry.capture(ex);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; null &#x3D; run other HandlerExceptionResolvers to actually handle the exception</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getOrder() &#123;</span><br><span class="line">        &#x2F;&#x2F; ensure this resolver runs first so that all exceptions are reported</span><br><span class="line">        return Integer.MIN_VALUE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="Fabric的编译和安装"><a href="#Fabric的编译和安装" class="headerlink" title="Fabric的编译和安装"></a>Fabric的编译和安装</h3><p>​    第一步：创建目录并下载代码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p $GOPATH/src/github.com/hyperledger</span><br><span class="line">cd $GOPATH/src/github.com/hyperledger</span><br><span class="line">sudo git clone http://gerrit.hyperledger.org/r/fabric</span><br></pre></td></tr></table></figure>
 
-<p>​    第二步： 安装相关依赖软件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">go get github.com&#x2F;golang&#x2F;protobuf&#x2F;protoc-gen-go</span><br><span class="line">mkdir -p $GOPATH&#x2F;src&#x2F;github.com&#x2F;hyperledger&#x2F;fabric&#x2F;build&#x2F;docker&#x2F;gotools&#x2F;bin</span><br><span class="line">cp $GOPATH&#x2F;bin&#x2F;protoc-gen-go $GOPATH&#x2F;src&#x2F;github.com&#x2F;hyperledger&#x2F;fabric&#x2F;build&#x2F;docker&#x2F;gotools&#x2F;bin</span><br></pre></td></tr></table></figure>
+<h5 id="发送异常的连接"><a href="#发送异常的连接" class="headerlink" title="发送异常的连接"></a>发送异常的连接</h5><p>基础连接有三种：http,outputStream和noop。其中noop是默认的无连接。</p>
+<p>在此基础上，可以通过向dsn上附加额外属性字段使连接变为 BufferedConnection或 asyncConnection</p>
+<p>额外属性字段可以像get方式传字段一样附加到dsn字符串上。</p>
+<p>######asyncConnection设置：</p>
+<pre><code>1. 首先需要字段`async=true` 来通知开启异步连接包装。    
+2.  需要设置线程数`async.threads=2`，如果没有设置则会使用Runtime.getRuntime().availableProcessors()作为默认线程数。
+3. 设置优先级，`async.priority=2`,如果没有则使用最低优先级
+4. 设置队列的大小，`async.queuesize=40` ，该项默认值为50
+5. 设置饱和策略，`async.queue.overflow` ,该项默认值为`discradold` (可选值为：`sync`,`discardnew`和`discardold`)
+6. 设置 优雅停机 `async.gracefulshutdown`是否开启
+7. `async.shutdowntimeout`,该选项可以设置异步连接关闭超时时长。</code></pre><p>bufferedConnection 可以在和服务器通信失败时将异常信息缓存到设置的目录下，该项需要父目录的写权限。</p>
+<p>asyncConnection可以使用一个最低优先级的线程来发送异常，保证正常业务不受影响。</p>
 
-<blockquote>
-<p>出现了<code>package github.com/golang/protobuf/protoc-gen-go: cannot download, $GOPATH not set. For more details see: go help gopath</code> 的 问题，解决方法：<code>sudo env GOPATH=/home/parallels/go go get github.com/golang/protobuf/protoc-gen-go</code></p>
-</blockquote>
-<p>​    第三步： 编译Fabric 的模块</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd $GOPATH/src/github.com/hyperledger/fabric</span><br><span class="line">make release</span><br><span class="line">make docker</span><br></pre></td></tr></table></figure>
-
-<p>​    第四步： Fabric模块的安装</p>
-<p>将编译后的文件复制到系统文件夹，方法如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp $GOPATH/src/github.com/hyperledger/fabric/release/darwin-amd64/bin/*  /usr/local/bin</span><br></pre></td></tr></table></figure>
-
-<p>复制成功后通过下列命令修改文件的执行权限，否则无法执行。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod -R 775 /usr/local/bin/configtxgen</span><br><span class="line">sudo chmod -R 775 /usr/local/bin/configtxlator</span><br><span class="line">sudo chmod -R 775 /usr/local/bin/cryptogen</span><br><span class="line">sudo chmod -R 775 /usr/local/bin/peer</span><br><span class="line">sudo chmod -R 775 /usr/local/bin/orderer</span><br></pre></td></tr></table></figure>
-
-<p>通过以上命令后，就可以在系统的任何路径下运行这些模块。</p>
-<h3 id="运行自己的一个-fabric-网络"><a href="#运行自己的一个-fabric-网络" class="headerlink" title="运行自己的一个 fabric 网络"></a>运行自己的一个 fabric 网络</h3><blockquote>
-<p>这里之所以不使用《区块链开发实战》，是因为在执行相应步骤时 ，遇到了无法解决的问题，所以改用官方的样例</p>
-</blockquote>
-<ol>
-<li><p>创建一个文件夹，用来存放官方的例子。然后在新文件夹中执行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/hyperledger/fabric-samples.git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>接下来进入 fabric-samples/scripts , 执行bootstrap.sh, 拉取镜像。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ./fabric-samples/scripts</span><br><span class="line">./bootstrap.sh</span><br></pre></td></tr></table></figure>
-
-<p>这里拉取镜像需要时间比较长，因为镜像比较大，有些是一个G 以上的。需要有耐性。</p>
-</li>
-<li><p>镜像拉取完成后，就可以运行fabric 网络了。这里我选的是basic-network,这个网络是最基础的，只有一个节点。进入basic-network 文件夹，需要检查一下start.sh,  在<code>docker-compose -f docker-compose.yml up -d ca.example.com orderer.example.com peer0.org1.example.com couchdb</code> 这一行，如果没有cli ,需要在这一行末尾添加 cli 。cli 是用来初步测试chaincode 的。然后执行:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure>
-
-<p>当屏幕显示如下，即为网络启动成功了：</p>
-<p><img src="/Users/jingwang/Downloads/image-20190423222325407.png" alt="image-20190423222325407"></p>
-</li>
-<li><p>接下来执行<code>docker exec -it cli /bin/bash</code>，进入cli 容器内，</p>
-<p>执行以下命令，来进行链码的安装、初始化、交易测试以及查询：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">peer chaincode install -n mycc -v v0 -p github.com/chaincode_example02/go</span><br><span class="line">peer chaincode instantiate -o orderer.example.com:7050 -C mychannel -n mycc -v v0 -c '&#123;"Args":["init","a","120","b","200"]&#125;'</span><br><span class="line">peer chaincode query  -C mychannel -n mycc -c '&#123;"Args":["query","a"]&#125;'</span><br><span class="line">peer chaincode invoke  -C mychannel -n mycc -c '&#123;"Args":["invoke","a","b","20"]&#125;'</span><br></pre></td></tr></table></figure>
-
-<p>再次查询，此时a 的余额应当为 100 ，证明链码安装成功。</p>
-</li>
-<li><p>此时可以退出cli 容器，执行 <code>./stop.sh</code>和 <code>./teardown.sh</code>来停掉网络并清除已安装的链码。</p>
-</li>
-<li><p>测试完成，可以进入 fabric-samples/chaincode/chaincode_example02/go/ 文件夹，修改 chaincode_example02.go，来完成自己的业务逻辑。</p>
-</li>
-</ol>
-<p>PS：</p>
-<p>Docker 中的一些命令</p>
-<p>进入docker后，执行以下命令可以完成链码的安装等。</p>
-<p>安装： peer chaincode install -n mycc -v v0 -p github.com/chaincode_example02/go</p>
-<p>初始化信息 ：peer chaincode instantiate -o orderer.example.com:7050 -C mychannel -n mycc -v v0 -c ‘{“Args”:[“init”,”12000”,”er”,”l2k3j4l”,”/slfj”]}’</p>
-<p>查询信息：peer chaincode query  -C mychannel -n mycc -c ‘{“Args”:[“query”,”12000”]}’</p>
-<p>添加或删除信息： peer chaincode invoke -C mychannel -n mycc -c ‘{“Args”:[“add”,”6”,”thonas”,”lksjfdeio”,”/titan”]}’</p>
-<p>​                              peer chaincode invoke -C mychannel -n mycc -c ‘{“Args”:”delete”,”6”}’</p>
-<p>清除docker 配置</p>
-<blockquote>
-<p>当网络无法启动时，可以使用以下命令清除docker容器及配置。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker rm -f $(docker ps -aq)</span><br><span class="line">docker network prune</span><br><span class="line">docker volume prune</span><br></pre></td></tr></table></figure>
       
 
       
@@ -280,17 +211,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Fabric</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -304,18 +224,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8E%9F%E5%88%99/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          设计模式的原则
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/02/18/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E6%9C%89%E9%93%BE%E6%90%AD%E5%BB%BA%E7%AE%80%E8%A6%81%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">以太坊私有链搭建简要记录</div>
+    <a href="/2019/07/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8E%9F%E5%88%99/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">设计模式的原则</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -342,7 +253,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开发环境准备"><span class="toc-number">1.</span> <span class="toc-text">开发环境准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fabric的编译和安装"><span class="toc-number">2.</span> <span class="toc-text">Fabric的编译和安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行自己的一个-fabric-网络"><span class="toc-number">3.</span> <span class="toc-text">运行自己的一个 fabric 网络</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#类-sentry"><span class="toc-number">1.</span> <span class="toc-text">类 sentry</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#方法："><span class="toc-number">1.1.</span> <span class="toc-text">方法：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#作用："><span class="toc-number">1.2.</span> <span class="toc-text">作用：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#异常捕捉"><span class="toc-number"></span> <span class="toc-text">异常捕捉</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#发送异常的连接"><span class="toc-number">1.</span> <span class="toc-text">发送异常的连接</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -356,7 +267,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="在MAC下部署Fabric" data-title="在MAC下部署Fabric" data-url="http://http://jonathon0321.github.io/2019/04/12/%E5%9C%A8MAC%E4%B8%8B%E9%83%A8%E7%BD%B2Fabric/"></div>
+	<div class="ds-thread" data-thread-key="Sentry-源码分析记录" data-title="Sentry 源码分析记录" data-url="http://http://jonathon0321.github.io/2020/01/05/Sentry-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://http://jonathon0321.github.io">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://http://jonathon0321.github.io/index.html">
+<meta property="og:url" content="http://http//jonathon0321.github.io/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="default">
+<meta property="article:author" content="Jonathon">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -32,8 +31,8 @@
 
   
 
-</head>
-</html>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +54,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -133,7 +132,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -150,19 +149,113 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-设计模式的原则" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Sentry-源码分析记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/10/设计模式的原则/">设计模式的原则</a>
+      <a class="article-title" href="/2020/01/05/Sentry-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/">Sentry 源码分析记录</a>
     </h1>
   
 
         
-        <a href="/2019/07/10/设计模式的原则/" class="archive-article-date">
+        <a href="/2020/01/05/Sentry-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/" class="archive-article-date">
+  	<time datetime="2020-01-05T03:07:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>源码包为 io.sentry:1.7.5</p>
+<h5 id="类-sentry"><a href="#类-sentry" class="headerlink" title="类 sentry"></a>类 sentry</h5><p>该类在根目录下。</p>
+<p>######属性：</p>
+<p>logger,获取logger。</p>
+<p>​            SentryClient storedClient, 最近构造的实例，由辅助方法（例如 capture(<em>Event</em>)）使用。</p>
+<p>​            AtomicBoolean autoInitAttempted,用来判断是否尝试自动初始化。在获取sentryClient时，若获取不到，且该字段为false时自动创建并置为true.</p>
+<h6 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h6><p>1.init : 使用配置的dsn（数据源名字，是错误上报的地址）和sentryClientFactory 来创建sentryClient 以初始化。</p>
+<p>2.getStoredClient: 返回最近的sentryClient实例</p>
+<p>3.getContext: 获取最近的sentryClient实例的Context</p>
+<p>4.clearContext:清除当前的context</p>
+<p>5.capture: 捕捉事件或throwable异常或信息或eventBuilder。</p>
+<p>6.record: 调用client 的context 记录 breadcrumb</p>
+<p>7.setUser: 调用client 的context 设置user</p>
+<p>8.close： 关闭sentryClient的链接。</p>
+<h6 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h6><p>该类应是用来主动调用并向服务器发送异常事件的。</p>
+<h4 id="异常捕捉"><a href="#异常捕捉" class="headerlink" title="异常捕捉"></a>异常捕捉</h4><p>在sentry-spring 中，通过实现了handlerExceptionResolver 接口来对异常进行捕捉（调用了capture），随后返回null以便其他异常处理可以捕捉到异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class SentryExceptionResolver implements HandlerExceptionResolver, Ordered &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public ModelAndView resolveException(HttpServletRequest request,</span><br><span class="line">                                         HttpServletResponse response,</span><br><span class="line">                                         Object handler,</span><br><span class="line">                                         Exception ex) &#123;</span><br><span class="line"></span><br><span class="line">        Sentry.capture(ex);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; null &#x3D; run other HandlerExceptionResolvers to actually handle the exception</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getOrder() &#123;</span><br><span class="line">        &#x2F;&#x2F; ensure this resolver runs first so that all exceptions are reported</span><br><span class="line">        return Integer.MIN_VALUE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="发送异常的连接"><a href="#发送异常的连接" class="headerlink" title="发送异常的连接"></a>发送异常的连接</h5><p>基础连接有三种：http,outputStream和noop。其中noop是默认的无连接。</p>
+<p>在此基础上，可以通过向dsn上附加额外属性字段使连接变为 BufferedConnection或 asyncConnection</p>
+<p>额外属性字段可以像get方式传字段一样附加到dsn字符串上。</p>
+<p>######asyncConnection设置：</p>
+<pre><code>1. 首先需要字段`async=true` 来通知开启异步连接包装。    
+2.  需要设置线程数`async.threads=2`，如果没有设置则会使用Runtime.getRuntime().availableProcessors()作为默认线程数。
+3. 设置优先级，`async.priority=2`,如果没有则使用最低优先级
+4. 设置队列的大小，`async.queuesize=40` ，该项默认值为50
+5. 设置饱和策略，`async.queue.overflow` ,该项默认值为`discradold` (可选值为：`sync`,`discardnew`和`discardold`)
+6. 设置 优雅停机 `async.gracefulshutdown`是否开启
+7. `async.shutdowntimeout`,该选项可以设置异步连接关闭超时时长。</code></pre><p>bufferedConnection 可以在和服务器通信失败时将异常信息缓存到设置的目录下，该项需要父目录的写权限。</p>
+<p>asyncConnection可以使用一个最低优先级的线程来发送异常，保证正常业务不受影响。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/05/Sentry-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-设计模式的原则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8E%9F%E5%88%99/">设计模式的原则</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8E%9F%E5%88%99/" class="archive-article-date">
   	<time datetime="2019-07-10T11:46:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-10</time>
 </a>
         
@@ -170,9 +263,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​        设计模式有23种，这23种模式都遵守六个原则。六个原则分别是单一职责原则、里氏替换原则、依赖倒置原则、接口隔离原则、迪米特法则和开闭原则。</p>
+        <pre><code>设计模式有23种，这23种模式都遵守六个原则。六个原则分别是单一职责原则、里氏替换原则、依赖倒置原则、接口隔离原则、迪米特法则和开闭原则。</code></pre>
         
-          <a class="article-more-a" href="/2019/07/10/设计模式的原则/#more">more >></a>
+          <a class="article-more-a" href="/2019/07/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8E%9F%E5%88%99/#more">more >></a>
         
       
 
@@ -196,7 +289,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/10/设计模式的原则/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/07/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8E%9F%E5%88%99/">展开全文 >></a>
         </p>
       
 
@@ -226,19 +319,19 @@
 
 
   
-    <article id="post-在MAC下部署Fabric" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-在MAC下部署Fabric" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/12/在MAC下部署Fabric/">在MAC下部署Fabric</a>
+      <a class="article-title" href="/2019/04/12/%E5%9C%A8MAC%E4%B8%8B%E9%83%A8%E7%BD%B2Fabric/">在MAC下部署Fabric</a>
     </h1>
   
 
         
-        <a href="/2019/04/12/在MAC下部署Fabric/" class="archive-article-date">
+        <a href="/2019/04/12/%E5%9C%A8MAC%E4%B8%8B%E9%83%A8%E7%BD%B2Fabric/" class="archive-article-date">
   	<time datetime="2019-04-12T11:38:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-12</time>
 </a>
         
@@ -254,12 +347,12 @@
 <li><p>安装与配置</p>
 <p>使用以下命令:
         
-          <a class="article-more-a" href="/2019/04/12/在MAC下部署Fabric/#more">more >></a>
+          <a class="article-more-a" href="/2019/04/12/%E5%9C%A8MAC%E4%B8%8B%E9%83%A8%E7%BD%B2Fabric/#more">more >></a>
         
       
 
       
-    </p></li></ol></li></ol></div>
+    </div>
     <div class="article-info article-info-index">
       
       
@@ -278,7 +371,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/12/在MAC下部署Fabric/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/04/12/%E5%9C%A8MAC%E4%B8%8B%E9%83%A8%E7%BD%B2Fabric/">展开全文 >></a>
         </p>
       
 
@@ -308,19 +401,19 @@
 
 
   
-    <article id="post-以太坊私有链搭建简要记录" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-以太坊私有链搭建简要记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/18/以太坊私有链搭建简要记录/">以太坊私有链搭建简要记录</a>
+      <a class="article-title" href="/2019/02/18/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E6%9C%89%E9%93%BE%E6%90%AD%E5%BB%BA%E7%AE%80%E8%A6%81%E8%AE%B0%E5%BD%95/">以太坊私有链搭建简要记录</a>
     </h1>
   
 
         
-        <a href="/2019/02/18/以太坊私有链搭建简要记录/" class="archive-article-date">
+        <a href="/2019/02/18/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E6%9C%89%E9%93%BE%E6%90%AD%E5%BB%BA%E7%AE%80%E8%A6%81%E8%AE%B0%E5%BD%95/" class="archive-article-date">
   	<time datetime="2019-02-18T07:23:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-18</time>
 </a>
         
@@ -328,17 +421,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#####环境： MAC OS</p>
-<p>###以太坊的安装</p>
+        <p>#####环境： MAC OS<br>###以太坊的安装</p>
 <ol>
 <li>快速安装<br>在安装homebrew后直接使用命令行安装以太坊，命令如下：<br>&emsp;<code>$ brew tap ethereum/ethereum</code><br>&emsp;<code>$ brew install ethereum</code>
         
-          <a class="article-more-a" href="/2019/02/18/以太坊私有链搭建简要记录/#more">more >></a>
+          <a class="article-more-a" href="/2019/02/18/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E6%9C%89%E9%93%BE%E6%90%AD%E5%BB%BA%E7%AE%80%E8%A6%81%E8%AE%B0%E5%BD%95/#more">more >></a>
         
       
 
       
-    </li></ol></div>
+    </div>
     <div class="article-info article-info-index">
       
       
@@ -357,7 +449,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/18/以太坊私有链搭建简要记录/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/02/18/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E6%9C%89%E9%93%BE%E6%90%AD%E5%BB%BA%E7%AE%80%E8%A6%81%E8%AE%B0%E5%BD%95/">展开全文 >></a>
         </p>
       
 
@@ -387,19 +479,19 @@
 
 
   
-    <article id="post-Markdown-语法总结" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-Markdown-语法总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/22/Markdown-语法总结/">Markdown 语法总结</a>
+      <a class="article-title" href="/2019/01/22/Markdown-%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">Markdown 语法总结</a>
     </h1>
   
 
         
-        <a href="/2019/01/22/Markdown-语法总结/" class="archive-article-date">
+        <a href="/2019/01/22/Markdown-%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="archive-article-date">
   	<time datetime="2019-01-22T03:43:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-22</time>
 </a>
         
@@ -414,12 +506,12 @@
 </ol>
 <h1 id="h1"><a href="#h1" class="headerlink" title="h1"></a>h1</h1><h2 id="h2"><a href="#h2" class="headerlink" title="h2"></a>h2
         
-          <a class="article-more-a" href="/2019/01/22/Markdown-语法总结/#more">more >></a>
+          <a class="article-more-a" href="/2019/01/22/Markdown-%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/#more">more >></a>
         
       
 
       
-    </h2></div>
+    </div>
     <div class="article-info article-info-index">
       
       
@@ -438,7 +530,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/22/Markdown-语法总结/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/01/22/Markdown-%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">展开全文 >></a>
         </p>
       
 
@@ -478,7 +570,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Jonathon
+    		&copy; 2020 Jonathon
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -557,15 +649,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ethereum</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Fabric</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,7 +669,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
@@ -694,5 +786,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>
