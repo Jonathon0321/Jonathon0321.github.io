@@ -170,38 +170,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>源码包为 io.sentry:1.7.5</p>
-<h5 id="类-sentry"><a href="#类-sentry" class="headerlink" title="类 sentry"></a>类 sentry</h5><p>该类在根目录下。</p>
-<p>######属性：</p>
-<p>logger,获取logger。</p>
-<p>​            SentryClient storedClient, 最近构造的实例，由辅助方法（例如 capture(<em>Event</em>)）使用。</p>
-<p>​            AtomicBoolean autoInitAttempted,用来判断是否尝试自动初始化。在获取sentryClient时，若获取不到，且该字段为false时自动创建并置为true.</p>
-<h6 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h6><p>1.init : 使用配置的dsn（数据源名字，是错误上报的地址）和sentryClientFactory 来创建sentryClient 以初始化。</p>
-<p>2.getStoredClient: 返回最近的sentryClient实例</p>
-<p>3.getContext: 获取最近的sentryClient实例的Context</p>
-<p>4.clearContext:清除当前的context</p>
-<p>5.capture: 捕捉事件或throwable异常或信息或eventBuilder。</p>
-<p>6.record: 调用client 的context 记录 breadcrumb</p>
-<p>7.setUser: 调用client 的context 设置user</p>
-<p>8.close： 关闭sentryClient的链接。</p>
-<h6 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h6><p>该类应是用来主动调用并向服务器发送异常事件的。</p>
-<h4 id="异常捕捉"><a href="#异常捕捉" class="headerlink" title="异常捕捉"></a>异常捕捉</h4><p>在sentry-spring 中，通过实现了handlerExceptionResolver 接口来对异常进行捕捉（调用了capture），随后返回null以便其他异常处理可以捕捉到异常。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class SentryExceptionResolver implements HandlerExceptionResolver, Ordered &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public ModelAndView resolveException(HttpServletRequest request,</span><br><span class="line">                                         HttpServletResponse response,</span><br><span class="line">                                         Object handler,</span><br><span class="line">                                         Exception ex) &#123;</span><br><span class="line"></span><br><span class="line">        Sentry.capture(ex);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; null &#x3D; run other HandlerExceptionResolvers to actually handle the exception</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getOrder() &#123;</span><br><span class="line">        &#x2F;&#x2F; ensure this resolver runs first so that all exceptions are reported</span><br><span class="line">        return Integer.MIN_VALUE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="发送异常的连接"><a href="#发送异常的连接" class="headerlink" title="发送异常的连接"></a>发送异常的连接</h5><p>基础连接有三种：http,outputStream和noop。其中noop是默认的无连接。</p>
-<p>在此基础上，可以通过向dsn上附加额外属性字段使连接变为 BufferedConnection或 asyncConnection</p>
-<p>额外属性字段可以像get方式传字段一样附加到dsn字符串上。</p>
-<p>######asyncConnection设置：</p>
-<pre><code>1. 首先需要字段`async=true` 来通知开启异步连接包装。    
-2.  需要设置线程数`async.threads=2`，如果没有设置则会使用Runtime.getRuntime().availableProcessors()作为默认线程数。
-3. 设置优先级，`async.priority=2`,如果没有则使用最低优先级
-4. 设置队列的大小，`async.queuesize=40` ，该项默认值为50
-5. 设置饱和策略，`async.queue.overflow` ,该项默认值为`discradold` (可选值为：`sync`,`discardnew`和`discardold`)
-6. 设置 优雅停机 `async.gracefulshutdown`是否开启
-7. `async.shutdowntimeout`,该选项可以设置异步连接关闭超时时长。</code></pre><p>bufferedConnection 可以在和服务器通信失败时将异常信息缓存到设置的目录下，该项需要父目录的写权限。</p>
-<p>asyncConnection可以使用一个最低优先级的线程来发送异常，保证正常业务不受影响。</p>
-
+        
+          <a class="article-more-a" href="/2020/01/05/Sentry-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/#more">more >></a>
+        
       
 
       
@@ -209,6 +180,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tech</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -649,7 +631,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ethereum</a>
+                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -657,7 +639,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
+                <a href="javascript:void(0)" class="js-tag color4">ethereum</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tech</a>
               </li>
              
               <li class="article-tag-list-item">

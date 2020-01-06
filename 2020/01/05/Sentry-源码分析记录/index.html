@@ -8,15 +8,16 @@
   <link rel="dns-prefetch" href="http://http://jonathon0321.github.io">
   <title>Sentry 源码分析记录 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="源码包为 io.sentry:1.7.5 类 sentry该类在根目录下。 ######属性： logger,获取logger。 ​            SentryClient storedClient, 最近构造的实例，由辅助方法（例如 capture(Event)）使用。 ​            AtomicBoolean autoInitAttempted,用来判断是否尝试自动初始化。">
+  <meta name="description" content="源码包为 io.sentry:1.7.5">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sentry 源码分析记录">
 <meta property="og:url" content="http://http//jonathon0321.github.io/2020/01/05/Sentry-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="源码包为 io.sentry:1.7.5 类 sentry该类在根目录下。 ######属性： logger,获取logger。 ​            SentryClient storedClient, 最近构造的实例，由辅助方法（例如 capture(Event)）使用。 ​            AtomicBoolean autoInitAttempted,用来判断是否尝试自动初始化。">
+<meta property="og:description" content="源码包为 io.sentry:1.7.5">
 <meta property="article:published_time" content="2020-01-05T03:07:45.000Z">
-<meta property="article:modified_time" content="2020-01-06T06:18:11.349Z">
+<meta property="article:modified_time" content="2020-01-06T06:23:34.448Z">
 <meta property="article:author" content="Jonathon">
+<meta property="article:tag" content="tech">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -172,6 +173,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>源码包为 io.sentry:1.7.5</p>
+<a id="more"></a>
+
 <h5 id="类-sentry"><a href="#类-sentry" class="headerlink" title="类 sentry"></a>类 sentry</h5><p>该类在根目录下。</p>
 <p>######属性：</p>
 <p>logger,获取logger。</p>
@@ -211,6 +214,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tech</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -381,7 +395,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ethereum</a>
+                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -389,7 +403,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
+                <a href="javascript:void(0)" class="js-tag color4">ethereum</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tech</a>
               </li>
              
               <li class="article-tag-list-item">
